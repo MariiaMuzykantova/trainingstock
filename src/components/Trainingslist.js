@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import moment from 'moment';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,6 +9,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import Addtraining from "./Addtraining";
 import Edittraining from "./Edittraining";
 import {CSVLink, CSVDownload} from 'react-csv';
+import * as FontAwesome from 'react-icons/lib/fa';
 
 class Trainingslist extends Component {
     constructor(props) {
@@ -61,19 +63,20 @@ class Trainingslist extends Component {
         }
 
         updateTraining = (link, training) => {
-            const link1 = "https://customerrest.herokuapp.com/api/trainings/16";
-            console.log(link);
+           const link1 = 'https://customerrest.herokuapp.com/api/trainings/' + link;
+        
+           console.log(link1);
             //const training1 = {date: "1", duration: "60", activity: "Box"};//, customer: "https://customerrest.herokuapp.com/api/customers/6"};
-            const training1 = {date: "12", duration: "65", activity: "Bok", customer: "https://customerrest.herokuapp.com/api/customers/2"};
+            //const training1 = {date: "12", duration: "65", activity: "Bok", customer: "https://customerrest.herokuapp.com/api/customers/2"};
             fetch(link1, {
                 method: 'PUT',
                 headers : {'Content-Type': 'application/json'},
-                body : JSON.stringify(training1)})
+                body : JSON.stringify(training)})
+                .then(toast.success("Changes saved", {
+                position: toast.POSITION.BOTTOM_LEFT}))
             .then(res => this.loadTrainings())
             .catch(err => console.error(err))
         }
-
-
 
     render() {
 
@@ -92,7 +95,8 @@ class Trainingslist extends Component {
                         columns: [
                             {
                                 Header: "Date",
-                                accessor: "date"
+                                accessor: "date",
+                                Cell: props => <span>{moment.utc(props.value).format('lll')}</span>
                             }, {
                                 Header: "Duration",
                                 accessor: "duration"
@@ -111,7 +115,7 @@ class Trainingslist extends Component {
                                 sortabele: false,
                                 filterable: false,
                                 accessor: "id",
-                            Cell: ({value}) => (<button type="button" className="btn btn-danger" onClick={ () => {this.deleteTraining(value)}}>Delete</button>)
+                            Cell: ({value}) => (<button type="button" className="btn btn-danger" onClick={ () => {this.deleteTraining(value)}}>Delete <FontAwesome.FaClose /></button>)
                             },
                             {
                                 Header: "",

@@ -8,6 +8,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import Addcustomer from "./Addcustomer";
 import Editcustomer from "./Editcustomer";
 import {CSVLink, CSVDownload} from 'react-csv';
+import * as FontAwesome from 'react-icons/lib/fa';
 
 class Customerslist extends Component {
     constructor(props) {
@@ -61,7 +62,7 @@ class Customerslist extends Component {
         }
 
         updateCustomer = (link, customer) => {
-         
+         console.log(link)
             fetch(link, {
                 method: 'PUT',
                 headers : {'Content-Type': 'application/json'},
@@ -116,7 +117,7 @@ class Customerslist extends Component {
                                 sortabele: false,
                                 filterable: false,
                                 accessor: "links[0].href",
-                            Cell: ({value}) => (<button type="button" className="btn btn-danger" onClick={ () => {this.deleteCustomer(value)}}>Delete</button>)
+                            Cell: ({value}) => (<button type="button" className="btn btn-danger" onClick={ () => {this.deleteCustomer(value)}}>Delete <FontAwesome.FaClose /></button>)
                             },
                             {
                                 Header: "",

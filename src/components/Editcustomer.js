@@ -1,5 +1,6 @@
 import React from 'react';
 import SkyLight from 'react-skylight';
+import * as FontAwesome from 'react-icons/lib/fa';
 
 class Editcustomer extends React.Component {
 constructor(props) {
@@ -49,7 +50,7 @@ handleSubmit = (event) => {
               <button className = "btn btn-primary" onClick={this.handleSubmit}>Save</button>
               </form>
         </SkyLight>
-        <button className = "btn btn-primary" onClick={() => this.simpleDialog.show()}>Edit customer</button>
+        <button className = "btn btn-primary" onClick={() => this.simpleDialog.show()}>Edit customer <FontAwesome.FaBook /></button>
       </div>
     )
   }

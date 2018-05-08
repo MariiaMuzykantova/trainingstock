@@ -1,11 +1,16 @@
 import React from 'react';
 import SkyLight from 'react-skylight';
+import moment from 'moment';
+import * as FontAwesome from 'react-icons/lib/fa';
 
 class Edittraining extends React.Component {
 constructor(props) {
     super(props);
     //this.state = {date: this.props.training.date, duration: this.props.training.duration, activity: this.props.training.activity, customerid: this.props.training.customerid}
-    this.state = {date: this.props.training.date, duration: this.props.training.duration, activity: this.props.training.activity, customer: this.props.training.customer}
+    this.state = {id: this.props.training.id, date: this.props.training.date, duration: this.props.training.duration, activity: this.props.training.activity}
+    console.log(this.props.link);
+    console.log(this.props.training);
+    
 }
 
 handleChange = (event) => {
@@ -17,9 +22,8 @@ handleChange = (event) => {
 handleSubmit = (event) => {
     event.preventDefault();
 
-    //const training = {date: this.state.date, duration: this.state.duration, activity: this.state.activity, customer: "https://customerrest.herokuapp.com/api/customers/" + this.state.customerid};
-    const training = {date: this.state.date, duration: this.state.duration, activity: this.state.activity, customer: this.state.customer};
-        this.props.updateTraining(this.props.link, training);
+    const training = {date: this.state.date, duration: this.state.duration, activity: this.state.activity};
+        this.props.updateTraining(this.state.id, training);
         this.simpleDialog.hide();
     }
 
@@ -38,15 +42,11 @@ handleSubmit = (event) => {
               </div>
               <div className = "form-group">
                  <input placeholder = "Activity" value = {this.state.activity} className = "form-control" name = "activity" onChange={this.handleChange}/>
-              </div>
-              <div className = "form-group">
-                 <input placeholder = "Customer's ID" value = {this.state.customer} className = "form-control" name = "customer" onChange={this.handleChange}/>
-              </div>
-    
-              <button className = "btn btn-primary" onClick={this.handleSubmit}>Save</button>
+              </div> 
+              <button className = "btn btn-primary" onClick={this.handleSubmit}>Save <FontAwesome.FaFloppyO /></button>
               </form>
         </SkyLight>
-        <button className = "btn btn-primary" onClick={() => this.simpleDialog.show()}>Edit training</button>
+        <button className = "btn btn-primary" onClick={() => this.simpleDialog.show()}>Edit training <FontAwesome.FaBook /></button>
       </div>
     )
   }

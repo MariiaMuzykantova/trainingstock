@@ -1,5 +1,6 @@
 import React from 'react';
 import SkyLight from 'react-skylight';
+import * as FontAwesome from 'react-icons/lib/fa';
 
 class Addcustomer extends React.Component {
 constructor(props) {
@@ -25,7 +26,7 @@ handleSubmit = (event) => {
 
     return (
       <div>
-        <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Hi, I'm a simple modal">
+        <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Please, add a new customer here">
 
           <form>
               <div className = "form-group">
@@ -46,10 +47,10 @@ handleSubmit = (event) => {
               <div className = "form-group">
                  <input placeholder = "Phone number" className = "form-control" name = "phone" onChange={this.handleChange}/>
               </div>
-              <button className = "btn btn-primary" onClick={this.handleSubmit}>Save</button>
+              <button className = "btn btn-primary" onClick={this.handleSubmit}>Save <FontAwesome.FaFloppyO /></button>
               </form>
         </SkyLight>
-        <button style ={{margin: 10}} className = "btn btn-primary" onClick={() => this.simpleDialog.show()}>Add customer</button>
+        <button style ={{margin: 10}} className = "btn btn-primary" onClick={() => this.simpleDialog.show()}>Add customer <FontAwesome.FaPlus /></button>
       </div>
     )
   }
