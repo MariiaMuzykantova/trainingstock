@@ -22,7 +22,7 @@ handleChange = (event) => {
 handleSubmit = (event) => {
     event.preventDefault();
 
-    const training = {date: this.state.date, duration: this.state.duration, activity: this.state.activity};
+    const training = {date: moment(this.state.date, 'DD/MM/YYYY', true).format(), duration: this.state.duration, activity: this.state.activity};
         this.props.updateTraining(this.state.id, training);
         this.simpleDialog.hide();
     }

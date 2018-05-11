@@ -38,7 +38,7 @@ handleSubmit = (event) => {
 
           <form>
               <div className = "form-group">
-                 <input placeholder = "Date" className = "form-control" name = "date" onChange={this.handleChange}/>
+                 <input placeholder = "Date: dd/mm/yy" className = "form-control" name = "date" onChange={this.handleChange}/>
               </div>
               <div className = "form-group">
                  <input placeholder = "Duration" className = "form-control" name = "duration" onChange={this.handleChange}/>
